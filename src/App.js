@@ -10,6 +10,7 @@ function App() {
   const [data, setData] = useState();
   const [error, setError] = useState();
   const [mode, setMode] = useState("monochrome");
+  //Gets data
   const getData = () => {
     axios
       .get(
@@ -22,6 +23,7 @@ function App() {
         setError(response);
       });
   };
+  //Updates data when color and mode changes
   useEffect(() => {
     getData();
   }, [color, mode]);

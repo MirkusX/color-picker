@@ -17,14 +17,16 @@ export const Frontpage = () => {
   const { color, setColor } = useContext(ColorContext);
   const { mode, setMode } = useContext(ModeContext);
   const [display, setDisplay] = useState(false);
-  console.log(data);
+  //Displays text when you copy color code
   const text = () => {
     setDisplay((display) => (display = !display));
   };
+  //Function for copying color code
   const copy = (props) => {
     navigator.clipboard.writeText(props);
     text();
   };
+  //Hides text that appears after copying color code after 1.5s
   useEffect(() => {
     if (display === true) {
       setTimeout(() => {
@@ -36,12 +38,14 @@ export const Frontpage = () => {
     <>
       <StyledSection>
         <InputDiv>
+          {/* Sets what color should be displayed */}
           <input
             type="color"
             onChange={(e) =>
               setColor((color) => (color = e.target.value.slice(1)))
             }
           />
+          {/* Sets what mode should be used */}
           <StyledSelect
             onChange={(e) => setMode((mode) => (mode = e.target.value))}
           >
@@ -56,6 +60,7 @@ export const Frontpage = () => {
           </StyledSelect>
         </InputDiv>
         <StyledRow>
+          {/* Displays colors and makes it able to be copied on click */}
           {data.colors.map((item, index) => {
             return (
               <>
